@@ -1,3 +1,9 @@
+# Hiep, 11/20/2026
+# This scripts used to check all webpages and email
+# to you with HTTP status of each webpage.
+#
+# python ==3.13.5
+######################################################
 from http import HTTPStatus
 import requests
 import subprocess
@@ -89,7 +95,7 @@ def send_alert(body):
     server.send_message(msg)
 
 
-
+### main
 if __name__ == "__main__":
   for url in urls:
     check_url_status(url, follow_redirects=False)
