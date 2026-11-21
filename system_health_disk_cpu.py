@@ -1,5 +1,5 @@
 # Hiep, 11/20/2026
-# This script is use to check disk and CPU threshold
+# This script is used to check disk and CPU threshold
 # and email alerts.
 #
 # python ==3.13.5
