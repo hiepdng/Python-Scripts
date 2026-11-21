@@ -14,7 +14,7 @@ HOSTNAMES = ["google.com",
              "yahoo.com",
              "dms.adrc.washington.edu"]
 PORT = 443
-WARN_DAYS = 65
+WARN_DAYS = 30
 
 def get_cert_details(host, port=443):
   context = ssl.create_default_context()
@@ -46,7 +46,7 @@ def send_alert(body):
   msg = EmailMessage()
   msg["From"] = "your_email@gmail.com"
   msg["To"] = "sysadmin@example.com"
-  msg["Subject"] = "Web Endpoint Alert"
+  msg["Subject"] = "Web Certificate Alert"
   msg.set_content(body) 
 
   ### Send email message with local sendmail binary
@@ -70,6 +70,5 @@ if __name__ == "__main__":
     get_cert_details(host)
 
   if alerts:
-    #send_alert(alerts)
-    print(alerts)
+    send_alert(alerts)
 
