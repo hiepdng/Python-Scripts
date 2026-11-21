@@ -46,7 +46,7 @@ def send_alert(body):
   msg = EmailMessage()
   msg["From"] = "your_email@gmail.com"
   msg["To"] = "sysadmin@example.com"
-  msg["Subject"] = "Web Certificate Alert"
+  msg["Subject"] = "Web Certificate Expiry Alert"
   msg.set_content(body) 
 
   ### Send email message with local sendmail binary
@@ -70,5 +70,5 @@ if __name__ == "__main__":
     get_cert_details(host)
 
   if alerts:
-    send_alert(alerts)
+    send_alert("\n".join(alerts))
 
