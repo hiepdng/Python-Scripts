@@ -8,11 +8,12 @@ import datetime
 import socket
 import ssl
 from cryptography import x509
+import smtplib
 from email.message import EmailMessage
 
 HOSTNAMES = ["google.com",
              "yahoo.com",
-             "dms.adrc.washington.edu"]
+             "marketwatch"]
 PORT = 443
 WARN_DAYS = 30
 
@@ -29,10 +30,10 @@ def get_cert_details(host, port=443):
   expiry = cert.not_valid_after_utc
   days_left = (expiry - datetime.datetime.now(datetime.timezone.utc)).days
 
-  print(f"Host:       {host}")
-  print(f"Issuer:     {cert.issuer.rfc4514_string()}")
-  print(f"Expires:    {expiry.strftime('%Y-%m-%d %H:%M:%S UTC')}")
-  print(f"Days Left:  {days_left}\n")
+  #print(f"Host:       {host}")
+  #print(f"Issuer:     {cert.issuer.rfc4514_string()}")
+  #print(f"Expires:    {expiry.strftime('%Y-%m-%d %H:%M:%S UTC')}")
+  #print(f"Days Left:  {days_left}\n")
  
   if days_left <= WARN_DAYS:
     alerts.append(f"WARNING: Host:       {host}")
@@ -66,7 +67,6 @@ def send_alert(body):
 alerts = []
 if __name__ == "__main__":
   for host in HOSTNAMES:
-    print("--------------")
     get_cert_details(host)
 
   if alerts:
